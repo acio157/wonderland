@@ -2,26 +2,36 @@
 this is a running list of all the awe inspiring and minute repos in github
 
 ## Science
-[Apollo-11 Guidance Code](https://github.com/chrislgarry/Apollo-11), the guidance code that flew to the moon, full of human comments left by the people who wrote it
 
-[broadinstitute/gatk](https://github.com/broadinstitute/gatk), the Broad Institute's standard for finding genetic variants in DNA.
+### [AlphaFold 2](https://github.com/google-deepmind/alphafold)
+DeepMind's system that predicts a protein's 3D structure from its sequence, cracking a 50-year grand challenge in biology and winning the 2024 Nobel Prize in Chemistry.
 
-[chrislgarry/Apollo-11](https://github.com/chrislgarry/Apollo-11), the actual guidance-computer source code that flew Apollo 11.
+### [Apollo 11 Guidance Computer](https://github.com/chrislgarry/Apollo-11)
+The original onboard code that landed humans on the Moon in 1969, transcribed from MIT Museum printouts with the engineers' own comments intact.
 
-[cms-sw/cmssw](https://github.com/cms-sw/cmssw), CERN's CMS experiment software, one of the two that found the Higgs boson.
+### [CMSSW (CERN)](https://github.com/cms-sw/cmssw)
+The software running CERN's CMS detector, one of the two Large Hadron Collider experiments that discovered the Higgs boson.
 
-[E3SM-Project/E3SM](https://github.com/E3SM-Project/E3SM), the US Department of Energy's whole-Earth climate model for exascale supercomputers.
+### [E3SM, the Energy Exascale Earth System Model](https://github.com/E3SM-Project/E3SM)
+The US Department of Energy's simulation of the entire planet, atmosphere to ocean to ice, built for the world's fastest supercomputers.
 
-[google-deepmind/alphafold](https://github.com/google-deepmind/alphafold), the code behind AlphaFold 2, predicting protein structure from sequence.
+### [F´ (F Prime)](https://github.com/nasa/fprime)
+NASA JPL's flight-software framework, flown on real spacecraft including the Ingenuity Mars helicopter.
 
-[google/skywater-pdk](https://github.com/google/skywater-pdk), a fully open kit for fabricating real silicon chips down to the transistor (now archived).
+### [Genome Analysis Toolkit (GATK)](https://github.com/broadinstitute/gatk)
+The Broad Institute's worldwide standard for finding the mutations hidden in human DNA.
 
-[gwastro/pycbc](https://github.com/gwastro/pycbc), the code used in the first direct detection of gravitational waves.
+### [OpenWorm](https://github.com/openworm/OpenWorm)
+An attempt to build the first complete digital simulation of a living creature, the C. elegans worm, neuron by neuron.
 
-[nasa/fprime](https://github.com/nasa/fprime), JPL's flight-software framework, flight-proven on real space missions.
+### [PyCBC](https://github.com/gwastro/pycbc)
+The analysis code behind the first direct detection of gravitational waves, confirming a prediction Einstein made a century earlier.
 
-[openworm/OpenWorm](https://github.com/openworm/OpenWorm), an attempt to simulate an entire living organism, the C. elegans worm.
+### [Qiskit](https://github.com/Qiskit/qiskit)
+IBM Quantum's toolkit for writing programs that run on real quantum computers.
 
-[Qiskit/qiskit](https://github.com/Qiskit/qiskit), IBM Quantum's toolkit for programming real quantum computers.
+### [ROOT (CERN)](https://github.com/root-project/root)
+CERN's framework for storing and analyzing the exabytes of Large Hadron Collider data behind discoveries like the Higgs boson.
 
-[root-project/root](https://github.com/root-project/root), CERN's data-analysis framework, the toolkit behind work like the Higgs boson.
+### [SkyWater Open PDK](https://github.com/google/skywater-pdk)
+The first fully open kit for manufacturing real silicon chips, opening fabrication down to the transistor to anyone (now archived).
