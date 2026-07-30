@@ -1,5 +1,5 @@
 # Wonderland
-Guthub is full of some of the wildest shit.  I post it here.
+Github is full of wild shit.  I post it here.
 
 ## Science
 
