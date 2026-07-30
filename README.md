@@ -3,26 +3,17 @@ Github is full of wild shit.  I post it here.
 
 ## Art
 
-### [Cooper Hewitt, Smithsonian Design Museum](https://github.com/cooperhewitt/collection)
-The quiet 2012 release of the Smithsonian's design museum throwing open roughly three-quarters of its collection.
-
 ### [The Metropolitan Museum of Art](https://github.com/metmuseum/openaccess)
 More than 470,000 artworks signed over to the public domain, the entire encyclopedic collection folded into a single downloadable file.
 
-### [Minneapolis Institute of Art](https://github.com/artsmia/collection)
-A museum that commits its collection to GitHub about once a day, updating the ledger like clockwork every morning.
 
 ### [Museum of Modern Art](https://github.com/MuseumofModernArt/collection)
 160,000 artworks and 15,000 artists released as open data in dated editions.
 
-### [National Gallery of Art](https://github.com/NationalGalleryOfArt/opendata)
-130,000 works kept so current.
 
 ### [Tate](https://github.com/tategallery/collection)
 A landmark early release of 70,000 artworks and 3,500 artists, left frozen in amber since 2014.
 
-### [Whitney Museum of American Art](https://github.com/whitneymuseum/open-access)
-The Whitney's American holdings as open data.
 
 ## Design Systems
 
