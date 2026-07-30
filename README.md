@@ -26,9 +26,6 @@ The visual grammar that dressed Android and Google for a decade, now archived an
 
 ## Fashion
 
-### [Anouk Wipprecht](https://github.com/AnoukWipprecht)
-A Dutch "FashionTech" designer who wires couture to microcontrollers, with a dress that mixes cocktails and code for a piece that turns the body into an instrument.
-
 ### [Carnegie Mellon Textiles Lab](https://github.com/textiles-lab)
 Where craft turns into code, its autoknit compiling a 3D shape into instructions a machine can knit, so that a sweater can be compiled.
 
@@ -37,12 +34,6 @@ The rare luxury-fashion house that engineers in daylight, publishing real infras
 
 ### [Gucci](https://github.com/GuccioGucci)
 Only with a few unglamorous plumbing repos, but Gucci githubs.
-
-### [Nervous System](https://github.com/nervoussystem)
-The studio whose 3D-printed Kinematics Dress lives at MoMA, with some 30 repos of the generative tooling that grows things.
-
-### [Parsons MFA Design + Technology](https://github.com/mfadt)
-The org for Parsons' storied program, now mostly gone dark, its real legacy the people who passed through and left.
 
 ### [UAL Creative Computing Institute](https://github.com/ual-cci)
 The creative-coding wing of Central Saint Martins' parent university actual coursework out in the open.
