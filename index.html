@@ -47,14 +47,16 @@
     font-size:10px; font-weight:700; letter-spacing:0.34em; color:var(--seal); margin:2em 0 0.7em;
     padding-bottom:0.6em; border-bottom:1px solid var(--seal); }
   .cab-cat:first-child{ margin-top:0; }
-  .cab-item{ display:flex; justify-content:space-between; align-items:baseline; padding:0.4em 0; }
-  .cab-item a{ font-family:"Bodoni Moda", Didot, serif; color:var(--black); text-decoration:none;
-    font-size:18px; font-weight:700; border-bottom:2px solid transparent; }
-  .cab-item a:hover{ border-bottom-color:var(--seal); }
-  .cab-item .n{ font-family:"Helvetica Neue", Arial, sans-serif; text-transform:uppercase;
-    font-size:8.5px; font-weight:700; letter-spacing:0.22em; color:var(--tan); white-space:nowrap; margin-left:1.4em; }
+  .cab-item{ padding:0.6em 0; line-height:1.5; }
+  .cab-item a.cab-name{ font-family:"Bodoni Moda", Didot, serif; color:var(--black); text-decoration:none;
+    font-size:17px; font-weight:700; border-bottom:2px solid transparent; }
+  .cab-item a.cab-name:hover{ border-bottom-color:var(--seal); }
+  .cab-desc{ font-family:"Caladea", Georgia, serif; font-weight:400; font-size:14.5px; color:var(--ink); }
+  .cab-today{ font-family:"Helvetica Neue", Arial, sans-serif; text-transform:uppercase; font-size:8px;
+    font-weight:700; letter-spacing:0.22em; color:var(--tan); white-space:nowrap; margin-left:0.5em; }
   .note{ font-family:"Caladea", Georgia, serif; font-style:italic; font-size:15px; color:var(--ink);
     line-height:1.6; max-width:30em; margin:0 auto; }
+  .feature{ display:block; width:100%; height:auto; margin:4.5em auto 0; }
 </style>
 </head>
 <body>
@@ -72,6 +74,7 @@
     <div class="meta label" id="meta"></div>
     <div class="toggle label" id="toggle">The whole cabinet</div>
     <div class="cabinet" id="cabinet"></div>
+    <img class="feature" src="vitrine.jpg" alt="A flower arrangement resting on a lit fluted-glass vitrine in a gallery">
   </div>
 
 <script>
@@ -139,9 +142,11 @@ function render(md){
     if(c){ const h = document.createElement("div"); h.className="cab-cat"; h.textContent=c; cab.appendChild(h); }
     items.forEach(it=>{
       const row = document.createElement("div"); row.className="cab-item";
-      const a = document.createElement("a"); a.href=it.u; a.target="_blank"; a.rel="noopener"; a.textContent=it.n;
-      const tag = document.createElement("span"); tag.className="n"; tag.textContent = (it===pick) ? "today" : "";
-      row.appendChild(a); row.appendChild(tag); cab.appendChild(row);
+      const a = document.createElement("a"); a.className="cab-name"; a.href=it.u; a.target="_blank"; a.rel="noopener"; a.textContent=it.n;
+      row.appendChild(a);
+      if(it.d){ const d = document.createElement("span"); d.className="cab-desc"; d.textContent = " " + it.d; row.appendChild(d); }
+      if(it===pick){ const t = document.createElement("span"); t.className="cab-today"; t.textContent = "today"; row.appendChild(t); }
+      cab.appendChild(row);
     });
   });
 
