@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A GitHub Wonderland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,700&family=Caladea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{ --coral:#F2BBAE; --ink:#211F1B; --black:#000000; --tan:#8C5A47; --seal:#7C2D26; }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; background:var(--coral); color:var(--ink); }
+  body{
+    font-family:"Caladea", Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing:antialiased; font-optical-sizing:auto;
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:10vh 24px;
+  }
+  .label{ font-family:"Helvetica Neue", Arial, sans-serif; text-transform:uppercase; }
+  .wrap{ max-width:600px; width:100%; text-align:center; }
+  .masthead{ font-size:10px; font-weight:700; letter-spacing:0.46em; color:var(--seal); margin:0 0 0.9em; }
+  .tagline{ font-family:"Caladea", Georgia, serif; font-style:italic; font-size:15.5px; line-height:1.5;
+    color:var(--ink); margin:0 auto 2.4em; max-width:27em; }
+  .orn{ width:26px; height:1px; background:var(--seal); margin:0 auto 2.6em; }
+  .eyebrow{ font-size:10.5px; font-weight:700; letter-spacing:0.42em; color:var(--seal); margin:0 0 1em; }
+  h1.name{
+    font-family:"Bodoni Moda", Didot, "Bodoni MT", "Times New Roman", serif;
+    font-weight:900; color:var(--black); font-size:42px; line-height:1.08; margin:0 0 0.6em; letter-spacing:0.005em;
+  }
+  h1.name a{ color:var(--black); text-decoration:none; border-bottom:2px solid transparent; }
+  h1.name a:hover{ border-bottom-color:var(--seal); }
+  .desc{ font-size:18px; font-weight:400; line-height:1.62; color:var(--ink); margin:0 auto 1.9em; max-width:33em; }
+  .open{ font-family:"Helvetica Neue", Arial, sans-serif; text-transform:uppercase;
+    font-size:10px; font-weight:700; letter-spacing:0.32em; color:var(--seal); text-decoration:none;
+    border-bottom:1px solid var(--seal); padding-bottom:4px; }
+  .rule{ width:100%; height:1px; background:var(--seal); opacity:.5; margin:3.2em auto 1.4em; max-width:15em; }
+  .meta{ font-size:9.5px; font-weight:700; letter-spacing:0.3em; color:var(--tan); }
+  .meta .dot{ color:var(--seal); margin:0 0.7em; }
+  .toggle{ display:inline-block; margin-top:2.8em; font-family:"Helvetica Neue", Arial, sans-serif;
+    text-transform:uppercase; font-size:9.5px; font-weight:700; letter-spacing:0.32em;
+    color:var(--tan); cursor:pointer; user-select:none; }
+  .toggle:hover{ color:var(--seal); }
+  .cabinet{ display:none; text-align:left; margin-top:2.6em; }
+  .cabinet.show{ display:block; }
+  .cab-cat{ font-family:"Helvetica Neue", Arial, sans-serif; text-transform:uppercase;
+    font-size:10px; font-weight:700; letter-spacing:0.34em; color:var(--seal); margin:2em 0 0.7em;
+    padding-bottom:0.6em; border-bottom:1px solid var(--seal); }
+  .cab-cat:first-child{ margin-top:0; }
+  .cab-item{ display:flex; justify-content:space-between; align-items:baseline; padding:0.4em 0; }
+  .cab-item a{ font-family:"Bodoni Moda", Didot, serif; color:var(--black); text-decoration:none;
+    font-size:18px; font-weight:700; border-bottom:2px solid transparent; }
+  .cab-item a:hover{ border-bottom-color:var(--seal); }
+  .cab-item .n{ font-family:"Helvetica Neue", Arial, sans-serif; text-transform:uppercase;
+    font-size:8.5px; font-weight:700; letter-spacing:0.22em; color:var(--tan); white-space:nowrap; margin-left:1.4em; }
+  .note{ font-family:"Caladea", Georgia, serif; font-style:italic; font-size:15px; color:var(--ink);
+    line-height:1.6; max-width:30em; margin:0 auto; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="masthead label" id="masthead">Wonderland</div>
+    <div class="tagline" id="tagline"></div>
+    <div class="orn"></div>
+    <div id="card">
+      <div class="eyebrow label" id="cat"></div>
+      <h1 class="name"><a id="name" href="#"></a></h1>
+      <p class="desc" id="desc"></p>
+      <a class="open" id="open" href="#" target="_blank" rel="noopener">View the repository</a>
+    </div>
+    <div class="rule"></div>
+    <div class="meta label" id="meta"></div>
+    <div class="toggle label" id="toggle">The whole cabinet</div>
+    <div class="cabinet" id="cabinet"></div>
+  </div>
+
+<script>
+const README_URL = "https://raw.githubusercontent.com/acio157/wonderland/main/README.md";
+
+function parse(md){
+  const lines = md.split(/\r?\n/);
+  const entries = [];
+  const catOrder = [];
+  let title = "", subtitle = "", cat = "", cur = null;
+  const push = ()=>{ if(cur){ cur.d = (cur.d||"").trim(); if(cur.u && /^https?:/i.test(cur.u)) entries.push(cur); cur = null; } };
+  for(const raw of lines){
+    const line = raw.trim();
+    if(!line){ continue; }
+    let m;
+    if((m = line.match(/^###\s+\[([^\]]+)\]\(([^)]+)\)(.*)$/))){
+      push();
+      cur = { c:cat, n:m[1].trim(), u:m[2].trim(), d:(m[3]||"").replace(/^[\s,.-]+/,"") };
+    } else if((m = line.match(/^-\s+\[([^\]]+)\]\(([^)]+)\)\s*(.*)$/))){
+      push();
+      cur = { c:cat, n:m[1].trim(), u:m[2].trim(), d:(m[3]||"").replace(/^[\s,.-]+/,"") };
+    } else if((m = line.match(/^##\s+(.+)$/))){
+      push(); cat = m[1].trim(); if(!catOrder.includes(cat)) catOrder.push(cat);
+    } else if((m = line.match(/^#\s+(.+)$/))){
+      title = m[1].trim();
+    } else if(cur){
+      cur.d = (cur.d ? cur.d + " " : "") + line;
+    } else if(title && !cat && !subtitle){
+      subtitle = line;
+    }
+  }
+  push();
+  return { title, subtitle, entries, catOrder };
+}
+
+function dayIndex(n){
+  const t = new Date(); t.setHours(0,0,0,0);
+  const day = Math.floor(t.getTime()/86400000);
+  return ((day % n) + n) % n;
+}
+
+function render(md){
+  const { title, subtitle, entries, catOrder } = parse(md);
+  if(title){ document.getElementById("masthead").textContent = title; }
+  document.getElementById("tagline").textContent = subtitle || "";
+  if(!entries.length){ return showNote("Your README has no entries yet. Add some and reload."); }
+
+  const idx = dayIndex(entries.length);
+  const pick = entries[idx];
+  document.getElementById("cat").textContent = pick.c || "";
+  const nameA = document.getElementById("name");
+  nameA.textContent = pick.n; nameA.href = pick.u; nameA.target = "_blank"; nameA.rel = "noopener";
+  document.getElementById("desc").textContent = pick.d;
+  document.getElementById("open").href = pick.u;
+
+  const dateStr = new Date().toLocaleDateString(undefined,{weekday:"long", day:"numeric", month:"long", year:"numeric"});
+  document.getElementById("meta").innerHTML =
+    "No. " + (idx+1) + " of " + entries.length + '<span class="dot">&middot;</span>' + dateStr;
+
+  const cab = document.getElementById("cabinet");
+  const cats = catOrder.length ? catOrder : [""];
+  cats.forEach(c=>{
+    const items = entries.filter(x=>x.c===c);
+    if(!items.length) return;
+    if(c){ const h = document.createElement("div"); h.className="cab-cat"; h.textContent=c; cab.appendChild(h); }
+    items.forEach(it=>{
+      const row = document.createElement("div"); row.className="cab-item";
+      const a = document.createElement("a"); a.href=it.u; a.target="_blank"; a.rel="noopener"; a.textContent=it.n;
+      const tag = document.createElement("span"); tag.className="n"; tag.textContent = (it===pick) ? "today" : "";
+      row.appendChild(a); row.appendChild(tag); cab.appendChild(row);
+    });
+  });
+
+  document.getElementById("toggle").addEventListener("click", ()=>{
+    const open = cab.classList.toggle("show");
+    document.getElementById("toggle").textContent = open ? "Close the cabinet" : "The whole cabinet";
+  });
+}
+
+function showNote(msg){
+  document.getElementById("card").innerHTML = '<p class="note">' + msg + '</p>';
+  document.getElementById("meta").textContent = "";
+  document.getElementById("toggle").style.display = "none";
+}
+
+fetch(README_URL, { cache:"no-store" })
+  .then(r=>{ if(!r.ok) throw new Error(); return r.text(); })
+  .then(render)
+  .catch(()=> showNote("This page reads your repo's README. Put it in the repo next to README.md and open it from GitHub Pages (a browser will not let a lone local file read the README beside it)."));
+</script>
+</body>
+</html>
